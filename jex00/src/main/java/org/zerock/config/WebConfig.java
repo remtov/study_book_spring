@@ -2,12 +2,13 @@ package org.zerock.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer{
+public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		
-		return new Class[] {RootConfig.class};//root-context.xml 대신하는 클래스를 지정하는데 여기선 RootConfig클래스를 사용하므로 이렇게 설정한다.
+		// root-context.xml을 대신하는 클래스를 지정한다. rootConfig클래스를 사용하므로 아래와같이 작성한다
+
+		return new Class[] { RootConfig.class };
 	}
 
 	@Override
@@ -22,5 +23,4 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 		return null;
 	}
 
-	
 }

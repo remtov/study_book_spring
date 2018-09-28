@@ -4,7 +4,43 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-	
+
+	<!-- https://github.com/brettwooldridge/HikariCP#HikariCP#configuration-knobs-baby 
+		히카리 설정참고 인터넷 -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver">
+		</property>
+		<property name="jdbcUrl"
+			value="jdbc:oracle:thin:@localhost:1521:xe">
+		</property>
+		<property name="username" value="ictu">
+		</property>
+		<property name="password" value="12345678">
+		</property>
+
+	</bean>
+
+	<!-- 히카리 컨피그레이션 -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<constructor-arg ref="hikariConfig"></constructor-arg>
+	</bean>
+	<!-- 히카리 컨피그레이션 -->
+
+
+
+
+	<!-- https://github.com/brettwooldridge/HikariCP#HikariCP#configuration-knobs-baby 
+		히카리 설정참고 인터넷 -->
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		<context:component-scan base-package="org.zerock.sample"></context:component-scan>
+	<context:component-scan
+		base-package="org.zerock.sample"></context:component-scan><!-- 
+		설정된경로에 해당하는 곳을 스캔하여 @component 어노테이션이 존재하는 클래스의 인스턴스를 생성한다. -->
+	<!-- 스프링에서서 사용하는 메모리 영역을 컨텍스트라고 부르며 그 컨텍스트들의 객체들에대한 설정을 담는 곳이 이곳이다. -->
+
+
+
+
 </beans>
